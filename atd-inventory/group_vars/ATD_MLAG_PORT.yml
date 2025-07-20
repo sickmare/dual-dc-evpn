@@ -1,0 +1,36 @@
+---
+servers:
+  - name: s1-leaf3_s1-leaf4-L2_VPC1
+    adapters:
+      - endpoint_ports: [NIC1, NIC2]
+        switch_ports:
+          - Ethernet4
+          - Ethernet4
+        switches:
+          - s1-leaf3
+          - s1-leaf4
+        profile: int_vpc_trunk_host
+        enabled: true
+        mtu:
+        vlans: '20'
+        port_channel:
+          description: PortChannel
+          mode: active
+          channel_id: 4
+  - name: s2-leaf3_s2-leaf4-L2_VPC1
+    adapters:
+      - endpoint_ports: [NIC1, NIC2]
+        switch_ports:
+          - Ethernet4
+          - Ethernet4
+        switches:
+          - s2-leaf3
+          - s2-leaf4
+        profile: int_vpc_trunk_host
+        enabled: true
+        mtu:
+        vlans: '20'
+        port_channel:
+          description: PortChannel
+          mode: active
+          channel_id: 4

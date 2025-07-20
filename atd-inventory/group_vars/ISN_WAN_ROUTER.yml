@@ -1,0 +1,84 @@
+---
+type: super-spine
+
+# BGP defaults
+bgp_default_ipv4_unicast: false
+bgp_update_wait_install: false
+bgp_update_wait_for_convergence: false
+bgp_distance:
+  external_routes: 20
+  internal_routes: 200
+  local_routes: 200
+
+
+super_spine:
+  defaults:
+    platform: cEOS-LAB
+    loopback_ipv4_pool: 192.168.250.0/24
+
+  nodes:
+    - name: s1-core1
+      id: 1
+      bgp_as: 65300
+      mgmt_ip: 192.168.0.102/24
+      l3_interfaces:
+        - name: Ethernet4
+          peer_ip: 30.1.1.2/24
+          ip_address: 30.1.1.1/24
+          description: TO DC2 s2-core1 eth4
+      structured_config:
+        router_bgp:
+          neighbors:
+          - ip_address: 30.1.1.2
+            remote_as: 65301
+            peer_group: IPv4-UNDERLAY-PEERS
+
+    - name: s1-core2
+      id: 2
+      bgp_as: 65300
+      mgmt_ip: 192.168.0.103/24
+      l3_interfaces:
+        - name: Ethernet4
+          peer_ip: 30.2.2.2/24
+          ip_address: 30.2.2.1/24
+          description: TO DC2 s2-core2 eth4
+      structured_config:
+        router_bgp:
+          neighbors:
+          - ip_address: 30.2.2.2
+            remote_as: 65301
+            peer_group: IPv4-UNDERLAY-PEERS
+
+
+    - name: s2-core1
+      id: 3
+      bgp_as: 65301
+      mgmt_ip: 192.168.0.202/24
+      l3_interfaces:
+        - name: Ethernet4
+          peer_ip: 30.1.1.1/24
+          ip_address: 30.1.1.2/24
+          description: TO DC1 s1-core1 eth4
+      structured_config:
+        router_bgp:
+          neighbors:
+          - ip_address: 30.1.1.1
+            remote_as: 65300
+            peer_group: IPv4-UNDERLAY-PEERS
+
+
+    - name: s2-core2
+      id: 4
+      bgp_as: 65301
+      mgmt_ip: 192.168.0.203/24
+      l3_interfaces:
+        - name: Ethernet4
+          peer_ip: 30.2.2.1/24
+          ip_address: 30.2.2.2/24
+          description: TO DC1 s1-core2 eth4
+      structured_config:
+        router_bgp:
+          neighbors:
+          - ip_address: 30.2.2.1
+            remote_as: 65300
+            peer_group: IPv4-UNDERLAY-PEERS

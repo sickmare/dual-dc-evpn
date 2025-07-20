@@ -1,0 +1,49 @@
+---
+fabric_name: ATD_MGMT
+
+l3_edge:
+  p2p_links_ip_pools:
+    - name: DCI_IP_pool
+      ipv4_pool: 172.16.30.0/24
+  p2p_links_profiles:
+    - name: DCI1_profile
+      ip_pool: DCI_IP_pool
+      as:
+        - 65103
+        - 65300
+      include_in_underlay_protocol: true
+    - name: DCI2_profile
+      ip_pool: DCI_IP_pool
+      as:
+        - 65203
+        - 65301
+      include_in_underlay_protocol: true
+
+  p2p_links:
+    - id: 1
+      nodes:
+        - s1-brdr1
+        - s1-core1
+      interfaces: [Ethernet4, Ethernet2]
+      profile: DCI1_profile
+
+    - id: 2
+      nodes:
+        - s1-brdr2
+        - s1-core2
+      interfaces: [Ethernet5, Ethernet3]
+      profile: DCI1_profile
+
+    - id: 3
+      nodes:
+        - s2-brdr1
+        - s2-core1
+      interfaces: [Ethernet4, Ethernet2]
+      profile: DCI2_profile
+
+    - id: 4
+      nodes:
+        - s2-brdr2
+        - s2-core2
+      interfaces: [Ethernet5, Ethernet3]
+      profile: DCI2_profile

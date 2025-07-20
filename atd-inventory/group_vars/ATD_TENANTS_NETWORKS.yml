@@ -1,0 +1,28 @@
+---
+tenants:
+  - name: Tenant_A
+    mac_vrf_vni_base: 10000
+    vrfs:
+      - name: bluevrf
+        vrf_vni: 10
+        vtep_diagnostic:
+          loopback: 100
+          loopback_ip_range: 10.255.1.0/24
+        svis:
+          - id: 2300
+            name: bluenet1
+            vni_override: 32300
+            tags: [bluenet1-tag]
+            enabled: true
+            ip_address_virtual: 192.168.11.1/24
+          - id: 2301
+            name: bluenet2
+            vni_override: 32301
+            tags: [bluenet1-tag]
+            enabled: true
+            ip_address_virtual: 192.168.12.1/24
+    l2vlans:
+      - id: 20
+        vni_override: 30020
+        name: ExternalNetwork
+        tags: [ExternalNetwork-tag]
