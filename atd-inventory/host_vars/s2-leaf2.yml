@@ -1,0 +1,23 @@
+---
+network_ports:
+  - switches:
+      - s2-leaf2
+    switch_ports:
+      - Ethernet4
+    enabled: true
+    description: test eth4 access port
+    mtu:
+    vlans: "2300"
+    profile: int_access_host
+  - switches:
+      - s2-leaf2
+    switch_ports:
+      - Ethernet6
+    enabled: true
+    mtu: 9000
+    profile: int_routed_host
+    structured_config:
+      ip_address: 10.192.226.254/24
+      vrf: bluevrf
+      description: test eth6 routed port
+      mtu:
