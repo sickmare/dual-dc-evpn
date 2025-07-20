@@ -1,0 +1,20 @@
+---
+fabric_name: ATD_MGMT
+
+underlay_routing_protocol: ebgp
+
+overlay_routing_protocol: ebgp
+
+evpn_vlan_aware_bundles: false
+
+eos_designs_documentation:
+  enable: true
+  connected_endpoints: true
+  topology_csv: true
+  p2p_links_csv: true
+
+mgmt_gateway: 192.168.0.1
+mgmt_interface: Management0
+mgmt_interface_vrf: default
+
+dns_domain: atd.lab

@@ -1,0 +1,25 @@
+---
+
+port_profiles:
+  - profile: int_vpc_trunk_host
+    enabled: false
+    mode: trunk
+    spanning_tree_portfast: edge
+    spanning_tree_bpduguard: enabled
+
+  - profile: int_trunk_host
+    enabled: false
+    mode: trunk
+    spanning_tree_portfast: edge
+    spanning_tree_bpduguard: enabled
+
+  - profile: int_access_host
+    enabled: false
+    mode: access
+    spanning_tree_portfast: edge
+    spanning_tree_bpduguard: enabled
+
+  - profile: int_routed_host
+    enabled: false
+    structured_config:
+      type: routed
