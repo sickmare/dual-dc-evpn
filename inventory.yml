@@ -1,0 +1,142 @@
+---
+all:
+  children:
+    cv_servers:
+      hosts:
+        cv_atd1:
+          ansible_host: 192.168.0.5
+          cv_collection: v3
+    ATD_MGMT:
+      children:
+        ISN_WAN_ROUTER:
+          children:
+            DC1_WAN_ROUTERS:
+              hosts:
+                s1-core1:
+                  type: super-spine
+                  ansible_host: 192.168.0.102
+                s1-core2:
+                  type: super-spine
+                  ansible_host: 192.168.0.103
+            DC2_WAN_ROUTERS:
+              hosts:
+                s2-core1:
+                  type: super-spine
+                  ansible_host: 192.168.0.202
+                s2-core2:
+                  type: super-spine
+                  ansible_host: 192.168.0.203
+
+#########################################
+# Comment the field that get data value from source path/file for proto type translation script
+# Mentha Cheng will replace the below script
+# Begin here
+#########################################
+
+        ATD_DC1_FABRIC:
+          children:
+            ATD_DC1_SPINES:
+              hosts:
+                s1-spine1:
+                  type: spine
+                  ansible_host: 192.168.0.10
+                s1-spine2:
+                  type: spine
+                  ansible_host: 192.168.0.11
+            ATD_DC1_LEAFS:
+              children:
+                pod1:
+                  hosts:
+                    s1-leaf1:
+                      type: l3leaf
+                      ansible_host: 192.168.0.12
+                    s1-leaf2:
+                      type: l3leaf
+                      ansible_host: 192.168.0.13
+                pod2:
+                  hosts:
+                    s1-leaf3:
+                      type: l3leaf
+                      ansible_host: 192.168.0.14
+                    s1-leaf4:
+                      type: l3leaf
+                      ansible_host: 192.168.0.15
+            ATD_DC1_BORDER_LEAFS_GW:
+              vars:
+                evpn_overlay_bgp_rtc: true
+              hosts:
+                s1-brdr1:
+                  type: l3leaf
+                  ansible_host: 192.168.0.100
+                s1-brdr2:
+                  type: l3leaf
+                  ansible_host: 192.168.0.101
+        ATD_DC2_FABRIC:
+          children:
+            ATD_DC2_SPINES:
+              hosts:
+                s2-spine1:
+                  type: spine
+                  ansible_host: 192.168.0.20
+                s2-spine2:
+                  type: spine
+                  ansible_host: 192.168.0.21
+            ATD_DC2_LEAFS:
+              children:
+                pod21:
+                  hosts:
+                    s2-leaf1:
+                      type: l3leaf
+                      ansible_host: 192.168.0.122
+                    s2-leaf2:
+                      type: l3leaf
+                      ansible_host: 192.168.0.123
+                pod22:
+                  hosts:
+                    s2-leaf3:
+                      type: l3leaf
+                      ansible_host: 192.168.0.124
+                    s2-leaf4:
+                      type: l3leaf
+                      ansible_host: 192.168.0.125
+            ATD_DC2_BORDER_LEAFS_GW:
+              vars:
+                evpn_overlay_bgp_rtc: true
+              hosts:
+                s2-brdr1:
+                  type: l3leaf
+                  ansible_host: 192.168.0.200
+                s2-brdr2:
+                  type: l3leaf
+                  ansible_host: 192.168.0.201
+    ATD_MSD_1:
+      children:
+        ISN_WAN_ROUTER:
+        ATD_DC1_FABRIC:
+        ATD_DC2_FABRIC:
+    ATD_TENANTS_NETWORKS:
+      children:
+        ATD_DC1_LEAFS:
+        ATD_DC2_LEAFS:
+        ATD_DC1_BORDER_LEAFS_GW:
+        ATD_DC2_BORDER_LEAFS_GW:
+    ATD_MLAG_PORT:
+      children:
+        ATD_DC1_LEAFS:
+        ATD_DC2_LEAFS:
+    ATD_PORT_PROFILES:
+      children:
+        ATD_DC1_LEAFS:
+        ATD_DC2_LEAFS:
+  vars:
+    ansible_user: arista
+    ansible_password: lr85ss1rfh7g6e5j
+    ansible_network_os: arista.eos.eos
+    ansible_become: true
+    ansible_become_method: enable
+    ansible_connection: httpapi
+    ansible_httpapi_port: 443
+    ansible_httpapi_use_ssl: true
+    ansible_httpapi_validate_certs: false
+    ansible_python_interpreter: $(which python3)
+
