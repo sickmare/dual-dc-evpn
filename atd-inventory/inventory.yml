@@ -130,7 +130,7 @@ all:
         ATD_DC2_LEAFS:
   vars:
     ansible_user: arista
-    ansible_password: lr85ss1rfh7g6e5j
+    ansible_password: psrqfvnuiwwvn10y
     ansible_network_os: arista.eos.eos
     ansible_become: true
     ansible_become_method: enable
