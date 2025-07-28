@@ -87,18 +87,18 @@ all:
                   hosts:
                     s2-leaf1:
                       type: l3leaf
-                      ansible_host: 192.168.0.122
+                      ansible_host: 192.168.0.22
                     s2-leaf2:
                       type: l3leaf
-                      ansible_host: 192.168.0.123
+                      ansible_host: 192.168.0.23
                 pod22:
                   hosts:
                     s2-leaf3:
                       type: l3leaf
-                      ansible_host: 192.168.0.124
+                      ansible_host: 192.168.0.24
                     s2-leaf4:
                       type: l3leaf
-                      ansible_host: 192.168.0.125
+                      ansible_host: 192.168.0.25
             ATD_DC2_BORDER_LEAFS_GW:
               vars:
                 evpn_overlay_bgp_rtc: true

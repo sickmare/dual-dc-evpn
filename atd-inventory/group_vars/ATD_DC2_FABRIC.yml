@@ -42,22 +42,22 @@ l3leaf:
       nodes:
         - name: s2-leaf1
           id: 21
-          mgmt_ip: 192.168.0.122/24
+          mgmt_ip: 192.168.0.22/24
           uplink_switch_interfaces: [Ethernet2, Ethernet2]
         - name: s2-leaf2
           id: 22
-          mgmt_ip: 192.168.0.123/24
+          mgmt_ip: 192.168.0.23/24
           uplink_switch_interfaces: [Ethernet3, Ethernet3]
     - group: pod22
       bgp_as: 65202
       nodes:
         - name: s2-leaf3
           id: 23
-          mgmt_ip: 192.168.0.124/24
+          mgmt_ip: 192.168.0.24/24
           uplink_switch_interfaces: [Ethernet4, Ethernet4]
         - name: s2-leaf4
           id: 24
-          mgmt_ip: 192.168.0.125/24
+          mgmt_ip: 192.168.0.25/24
           uplink_switch_interfaces: [Ethernet5, Ethernet5]
     - group: DC2_BORDER_LEAFS_GW
       bgp_as: 65203
