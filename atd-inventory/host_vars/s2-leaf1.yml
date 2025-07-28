@@ -7,7 +7,7 @@ network_ports:
     enabled: true
     description: test eth4 access port
     mtu:
-    vlans: "2300"
+    vlans: "20"
     profile: int_access_host
   - switches:
       - s2-leaf1

@@ -119,6 +119,14 @@ router_bgp:
       - 30020:30020
     redistribute_routes:
     - learned
+  - id: 30
+    tenant: Tenant_A
+    rd: 192.0.255.15:30030
+    route_targets:
+      both:
+      - 30030:30030
+    redistribute_routes:
+    - learned
 static_routes:
 - vrf: default
   destination_address_prefix: 0.0.0.0/0
@@ -184,7 +192,10 @@ vlans:
   - LEAF_PEER_L3
   tenant: Tenant_A
 - id: 20
-  name: ExternalNetwork
+  name: L2-V20
+  tenant: Tenant_A
+- id: 30
+  name: L2-V30
   tenant: Tenant_A
 vlan_interfaces:
 - name: Vlan4093
@@ -353,6 +364,8 @@ vxlan_interface:
         vni: 32301
       - id: 20
         vni: 30020
+      - id: 30
+        vni: 30030
       vrfs:
       - name: bluevrf
         vni: 10

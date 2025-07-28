@@ -7,7 +7,7 @@ network_ports:
     enabled: true
     description: test eth4 trunk port
     mtu:
-    vlans: "20,2300,2301"
+    vlans: "20,2300,2301,30"
     profile: int_trunk_host
   - switches:
       - s1-leaf2

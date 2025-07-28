@@ -218,7 +218,8 @@ vlan internal order ascending range 1006 1199
 
 | VLAN ID | Name | Trunk Groups |
 | ------- | ---- | ------------ |
-| 20 | ExternalNetwork | - |
+| 20 | L2-V20 | - |
+| 30 | L2-V30 | - |
 | 2300 | bluenet1 | - |
 | 2301 | bluenet2 | - |
 | 3009 | MLAG_iBGP_bluevrf | LEAF_PEER_L3 |
@@ -230,7 +231,10 @@ vlan internal order ascending range 1006 1199
 ```eos
 !
 vlan 20
-   name ExternalNetwork
+   name L2-V20
+!
+vlan 30
+   name L2-V30
 !
 vlan 2300
    name bluenet1
@@ -442,6 +446,7 @@ interface Vlan4094
 | VLAN | VNI | Flood List | Multicast Group |
 | ---- | --- | ---------- | --------------- |
 | 20 | 30020 | - | - |
+| 30 | 30030 | - | - |
 | 2300 | 32300 | - | - |
 | 2301 | 32301 | - | - |
 
@@ -461,6 +466,7 @@ interface Vxlan1
    vxlan virtual-router encapsulation mac-address mlag-system-id
    vxlan udp-port 4789
    vxlan vlan 20 vni 30020
+   vxlan vlan 30 vni 30030
    vxlan vlan 2300 vni 32300
    vxlan vlan 2301 vni 32301
    vxlan vrf bluevrf vni 10
@@ -628,6 +634,7 @@ ASN Notation: asplain
 | VLAN | Route-Distinguisher | Both Route-Target | Import Route Target | Export Route-Target | Redistribute |
 | ---- | ------------------- | ----------------- | ------------------- | ------------------- | ------------ |
 | 20 | 192.0.255.18:30020 | 30020:30020<br>remote 30020:30020 | - | - | learned |
+| 30 | 192.0.255.18:30030 | 30030:30030<br>remote 30030:30030 | - | - | learned |
 | 2300 | 192.0.255.18:32300 | 32300:32300<br>remote 32300:32300 | - | - | learned |
 | 2301 | 192.0.255.18:32301 | 32301:32301<br>remote 32301:32301 | - | - | learned |
 
@@ -714,6 +721,13 @@ router bgp 65103
       rd evpn domain remote 192.0.255.18:32301
       route-target both 32301:32301
       route-target import export evpn domain remote 32301:32301
+      redistribute learned
+   !
+   vlan 30
+      rd 192.0.255.18:30030
+      rd evpn domain remote 192.0.255.18:30030
+      route-target both 30030:30030
+      route-target import export evpn domain remote 30030:30030
       redistribute learned
    !
    address-family evpn

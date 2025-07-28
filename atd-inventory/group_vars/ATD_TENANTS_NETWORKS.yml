@@ -24,5 +24,9 @@ tenants:
     l2vlans:
       - id: 20
         vni_override: 30020
-        name: ExternalNetwork
+        name: L2-V20
+        tags: [ExternalNetwork-tag]
+      - id: 30
+        vni_override: 30030
+        name: L2-V30
         tags: [ExternalNetwork-tag]
