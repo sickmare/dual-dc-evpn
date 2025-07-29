@@ -4,7 +4,8 @@ all:
     cv_servers:
       hosts:
         cv_atd1:
-          ansible_host: 192.168.0.5
+          andisble_host: <gerry-lab2-20250727-2-1-f60e94b2-eos.topo.testdrive.arista.com>
+        #  ansible_host: 192.168.0.5
           cv_collection: v3
     ATD_MGMT:
       children:

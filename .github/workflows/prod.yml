@@ -1,0 +1,36 @@
+name: Deploy updates
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy-prod:
+    env:
+      LABPASSPHRASE: ${{ secrets.LABPASSPHRASE }}
+    timeout-minutes: 15
+    runs-on: ubuntu-latest
+    steps:
+      - name: Hi
+        run: echo "Hello World!"
+
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+
+      - name: Install Python requirements
+        run: pip3 install -r requirements.txt
+
+      - name: Run pre-commit on files
+        uses: pre-commit/action@v3.0.0
+
+      - name: Install collections
+        run: ansible-galaxy collection install -r requirements.yml
+
+      - name: Build and deploy DC1 and DC2
+        run: make build provision-cvp
+        working-directory:
+
