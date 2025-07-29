@@ -30,7 +30,13 @@ jobs:
       - name: Install collections
         run: ansible-galaxy collection install -r requirements.yml
 
-      - name: Build and deploy DC1 and DC2
-        run: make build provision-cvp
+
+      - name: Build configuration for DC1 and DC2
+        run: make build
         working-directory:
+
+      - name: Deploy intend config to DC1 and DC2 via CVP
+        run: make provision-cvp
+        working-directory:
+
 
