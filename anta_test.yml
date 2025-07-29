@@ -1,0 +1,14 @@
+---
+anta.tests.connectivity:
+  - VerifyReachability:
+      hosts:
+        - source: Management0
+          destination: 192.168.0.5
+          vrf: default
+        - source: Management0
+          destination: 192.168.0.1
+          vrf: default
+      result_overwrite:
+        categories:
+          - "Overwritten category 1"
+        description: "Test with overwritten description"

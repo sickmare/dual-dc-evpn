@@ -1,5 +1,116 @@
+aaa_root:
+  disabled: true
+config_end: true
+enable_password:
+  disabled: true
+ethernet_interfaces:
+- name: Ethernet2
+  description: P2P_s2-leaf1_Ethernet2
+  shutdown: false
+  mtu: 1500
+  ip_address: 172.32.255.80/31
+  peer: s2-leaf1
+  peer_interface: Ethernet2
+  peer_type: l3leaf
+  switchport:
+    enabled: false
+- name: Ethernet3
+  description: P2P_s2-leaf2_Ethernet2
+  shutdown: false
+  mtu: 1500
+  ip_address: 172.32.255.84/31
+  peer: s2-leaf2
+  peer_interface: Ethernet2
+  peer_type: l3leaf
+  switchport:
+    enabled: false
+- name: Ethernet4
+  description: P2P_s2-leaf3_Ethernet2
+  shutdown: false
+  mtu: 1500
+  ip_address: 172.32.255.88/31
+  peer: s2-leaf3
+  peer_interface: Ethernet2
+  peer_type: l3leaf
+  switchport:
+    enabled: false
+- name: Ethernet5
+  description: P2P_s2-leaf4_Ethernet2
+  shutdown: false
+  mtu: 1500
+  ip_address: 172.32.255.92/31
+  peer: s2-leaf4
+  peer_interface: Ethernet2
+  peer_type: l3leaf
+  switchport:
+    enabled: false
+- name: Ethernet7
+  description: P2P_s2-brdr1_Ethernet2
+  shutdown: false
+  mtu: 1500
+  ip_address: 172.32.255.216/31
+  peer: s2-brdr1
+  peer_interface: Ethernet2
+  peer_type: l3leaf
+  switchport:
+    enabled: false
+- name: Ethernet8
+  description: P2P_s2-brdr2_Ethernet2
+  shutdown: false
+  mtu: 1500
+  ip_address: 172.32.255.220/31
+  peer: s2-brdr2
+  peer_interface: Ethernet2
+  peer_type: l3leaf
+  switchport:
+    enabled: false
 hostname: s2-spine1
+ip_name_servers:
+- ip_address: 192.168.2.1
+  vrf: default
+- ip_address: 8.8.8.8
+  vrf: default
+- ip_address: 168.95.1.1
+  vrf: default
+ip_routing: true
 is_deployed: true
+loopback_interfaces:
+- name: Loopback0
+  description: ROUTER_ID
+  shutdown: false
+  ip_address: 192.2.255.1/32
+management_api_http:
+  enable_https: true
+  enable_vrfs:
+  - name: default
+management_interfaces:
+- name: Management0
+  description: OOB_MANAGEMENT
+  shutdown: false
+  vrf: default
+  ip_address: 192.168.0.20/24
+  type: oob
+  gateway: 192.168.0.1
+metadata:
+  platform: cEOS
+  fabric_name: ATD_MGMT
+prefix_lists:
+- name: PL-LOOPBACKS-EVPN-OVERLAY
+  sequence_numbers:
+  - sequence: 10
+    action: permit 192.2.255.0/24 eq 32
+route_maps:
+- name: RM-CONN-2-BGP
+  sequence_numbers:
+  - sequence: 10
+    type: permit
+    match:
+    - ip address prefix-list PL-LOOPBACKS-EVPN-OVERLAY
+router_bfd:
+  multihop:
+    interval: 1200
+    min_rx: 1200
+    multiplier: 3
 router_bgp:
   as: '65002'
   router_id: 192.2.255.1
@@ -7,37 +118,28 @@ router_bgp:
     external_routes: 20
     internal_routes: 200
     local_routes: 200
-  bgp:
-    default:
-      ipv4_unicast: false
-  maximum_paths:
-    paths: 4
-    ecmp: 4
   graceful_restart:
     enabled: true
     restart_time: 300
+  maximum_paths:
+    paths: 4
+    ecmp: 4
+  bgp:
+    default:
+      ipv4_unicast: false
   peer_groups:
   - name: IPv4-UNDERLAY-PEERS
     type: ipv4
-    maximum_routes: 12000
     send_community: all
+    maximum_routes: 12000
   - name: EVPN-OVERLAY-PEERS
     type: evpn
+    next_hop_unchanged: true
     update_source: Loopback0
     bfd: true
+    ebgp_multihop: 3
     send_community: all
     maximum_routes: 0
-    ebgp_multihop: 3
-    next_hop_unchanged: true
-  address_family_ipv4:
-    peer_groups:
-    - name: IPv4-UNDERLAY-PEERS
-      activate: true
-    - name: EVPN-OVERLAY-PEERS
-      activate: false
-  redistribute_routes:
-  - source_protocol: connected
-    route_map: RM-CONN-2-BGP
   neighbors:
   - ip_address: 172.32.255.81
     peer_group: IPv4-UNDERLAY-PEERS
@@ -71,149 +173,61 @@ router_bgp:
     description: s2-brdr2_Ethernet2
   - ip_address: 192.2.255.57
     peer_group: EVPN-OVERLAY-PEERS
-    peer: s2-brdr1
-    description: s2-brdr1
     remote_as: '65203'
+    peer: s2-brdr1
+    description: s2-brdr1_Loopback0
   - ip_address: 192.2.255.58
     peer_group: EVPN-OVERLAY-PEERS
-    peer: s2-brdr2
-    description: s2-brdr2
     remote_as: '65203'
+    peer: s2-brdr2
+    description: s2-brdr2_Loopback0
   - ip_address: 192.2.255.23
     peer_group: EVPN-OVERLAY-PEERS
-    peer: s2-leaf1
-    description: s2-leaf1
     remote_as: '65201'
+    peer: s2-leaf1
+    description: s2-leaf1_Loopback0
   - ip_address: 192.2.255.24
     peer_group: EVPN-OVERLAY-PEERS
-    peer: s2-leaf2
-    description: s2-leaf2
     remote_as: '65201'
+    peer: s2-leaf2
+    description: s2-leaf2_Loopback0
   - ip_address: 192.2.255.25
     peer_group: EVPN-OVERLAY-PEERS
-    peer: s2-leaf3
-    description: s2-leaf3
     remote_as: '65202'
+    peer: s2-leaf3
+    description: s2-leaf3_Loopback0
   - ip_address: 192.2.255.26
     peer_group: EVPN-OVERLAY-PEERS
-    peer: s2-leaf4
-    description: s2-leaf4
     remote_as: '65202'
+    peer: s2-leaf4
+    description: s2-leaf4_Loopback0
+  redistribute:
+    connected:
+      enabled: true
+      route_map: RM-CONN-2-BGP
   address_family_evpn:
     peer_groups:
     - name: EVPN-OVERLAY-PEERS
       activate: true
+  address_family_ipv4:
+    peer_groups:
+    - name: IPv4-UNDERLAY-PEERS
+      activate: true
+    - name: EVPN-OVERLAY-PEERS
+      activate: false
+service_routing_protocols_model: multi-agent
+spanning_tree:
+  mode: none
 static_routes:
 - vrf: default
   destination_address_prefix: 0.0.0.0/0
   gateway: 192.168.0.1
-service_routing_protocols_model: multi-agent
-ip_routing: true
+transceiver_qsfp_default_mode_4x10: true
 vlan_internal_order:
   allocation: ascending
   range:
     beginning: 1006
     ending: 1199
-ip_name_servers:
-- ip_address: 192.168.2.1
-  vrf: default
-- ip_address: 8.8.8.8
-  vrf: default
-- ip_address: 168.95.1.1
-  vrf: default
-spanning_tree:
-  mode: none
 vrfs:
 - name: default
   ip_routing: false
-management_interfaces:
-- name: Management0
-  description: oob_management
-  shutdown: false
-  vrf: default
-  ip_address: 192.168.0.20/24
-  gateway: 192.168.0.1
-  type: oob
-management_api_http:
-  enable_vrfs:
-  - name: default
-  enable_https: true
-ethernet_interfaces:
-- name: Ethernet2
-  peer: s2-leaf1
-  peer_interface: Ethernet2
-  peer_type: l3leaf
-  description: P2P_LINK_TO_S2-LEAF1_Ethernet2
-  shutdown: false
-  mtu: 1500
-  type: routed
-  ip_address: 172.32.255.80/31
-- name: Ethernet3
-  peer: s2-leaf2
-  peer_interface: Ethernet2
-  peer_type: l3leaf
-  description: P2P_LINK_TO_S2-LEAF2_Ethernet2
-  shutdown: false
-  mtu: 1500
-  type: routed
-  ip_address: 172.32.255.84/31
-- name: Ethernet4
-  peer: s2-leaf3
-  peer_interface: Ethernet2
-  peer_type: l3leaf
-  description: P2P_LINK_TO_S2-LEAF3_Ethernet2
-  shutdown: false
-  mtu: 1500
-  type: routed
-  ip_address: 172.32.255.88/31
-- name: Ethernet5
-  peer: s2-leaf4
-  peer_interface: Ethernet2
-  peer_type: l3leaf
-  description: P2P_LINK_TO_S2-LEAF4_Ethernet2
-  shutdown: false
-  mtu: 1500
-  type: routed
-  ip_address: 172.32.255.92/31
-- name: Ethernet7
-  peer: s2-brdr1
-  peer_interface: Ethernet2
-  peer_type: l3leaf
-  description: P2P_LINK_TO_S2-BRDR1_Ethernet2
-  shutdown: false
-  mtu: 1500
-  type: routed
-  ip_address: 172.32.255.216/31
-- name: Ethernet8
-  peer: s2-brdr2
-  peer_interface: Ethernet2
-  peer_type: l3leaf
-  description: P2P_LINK_TO_S2-BRDR2_Ethernet2
-  shutdown: false
-  mtu: 1500
-  type: routed
-  ip_address: 172.32.255.220/31
-loopback_interfaces:
-- name: Loopback0
-  description: EVPN_Overlay_Peering
-  shutdown: false
-  ip_address: 192.2.255.1/32
-prefix_lists:
-- name: PL-LOOPBACKS-EVPN-OVERLAY
-  sequence_numbers:
-  - sequence: 10
-    action: permit 192.2.255.0/24 eq 32
-route_maps:
-- name: RM-CONN-2-BGP
-  sequence_numbers:
-  - sequence: 10
-    type: permit
-    match:
-    - ip address prefix-list PL-LOOPBACKS-EVPN-OVERLAY
-router_bfd:
-  multihop:
-    interval: 1200
-    min_rx: 1200
-    multiplier: 3
-metadata:
-  platform: cEOS

@@ -1,0 +1,64 @@
+anta_inventory:
+  hosts:
+  - host: 192.168.0.10 
+    name: s1-spine1
+    tags: ["SPINE", "DC1"]
+  - host: 192.168.0.11
+    name: s1-spine2
+    tags: ["SPINE", "DC1"]
+  - host: 192.168.0.12
+    name: s1-leaf1
+    tags: ["LEAF", "DC1"]
+  - host: 192.168.0.13
+    name: s1-leaf2
+    tags: ["LEAF", "DC1"]
+  - host: 192.168.0.14
+    name: s1-leaf3
+    tags: ["LEAF", "DC1"]
+  - host: 192.168.0.15
+    name: s1-leaf4
+    tags: ["LEAF", "DC1"]
+  - host: 192.168.0.100
+    name: s1-brdr1
+    tags: ["LEAF", "DC1"]
+  - host: 192.168.0.101
+    name: s1-brdr2
+    tags: ["LEAF", "DC1"]
+##### DC2 #####
+  - host: 192.168.0.20 
+    name: s2-spine1
+    tags: ["SPINE", "DC2"]
+  - host: 192.168.0.21
+    name: s2-spine2
+    tags: ["SPINE", "DC2"]
+  - host: 192.168.0.22
+    name: s2-leaf1
+    tags: ["LEAF", "DC2"]
+  - host: 192.168.0.23
+    name: s2-leaf2
+    tags: ["LEAF", "DC2"]
+  - host: 192.168.0.24
+    name: s2-leaf3
+    tags: ["LEAF", "DC2"]
+  - host: 192.168.0.25
+    name: s2-leaf4
+    tags: ["LEAF", "DC2"]
+  - host: 192.168.0.200
+    name: s2-brdr1
+    tags: ["LEAF", "DC2"]
+  - host: 192.168.0.201
+    name: s2-brdr2
+    tags: ["LEAF", "DC2"]
+##### DCI/Core #####
+  - host: 192.168.0.102
+    name: s1-core1
+    tags: ["DCI", "CORE"]
+  - host: 192.168.0.103
+    name: s1-core2
+    tags: ["DCI", "CORE"]
+  - host: 192.168.0.202
+    name: s2-core1
+    tags: ["DCI", "CORE"]
+  - host: 192.168.0.203
+    name: s2-core2
+    tags: ["DCI", "CORE"]

@@ -6,6 +6,8 @@
   - [Management Interfaces](#management-interfaces)
   - [DNS Domain](#dns-domain)
   - [Management API HTTP](#management-api-http)
+- [Authentication](#authentication)
+  - [Enable Password](#enable-password)
 - [Spanning Tree](#spanning-tree)
   - [Spanning Tree Summary](#spanning-tree-summary)
   - [Spanning Tree Device Configuration](#spanning-tree-device-configuration)
@@ -38,20 +40,20 @@
 
 | Management Interface | Description | Type | VRF | IP Address | Gateway |
 | -------------------- | ----------- | ---- | --- | ---------- | ------- |
-| Management0 | oob_management | oob | default | 192.168.0.202/24 | 192.168.0.1 |
+| Management0 | OOB_MANAGEMENT | oob | default | 192.168.0.202/24 | 192.168.0.1 |
 
 ##### IPv6
 
 | Management Interface | Description | Type | VRF | IPv6 Address | IPv6 Gateway |
 | -------------------- | ----------- | ---- | --- | ------------ | ------------ |
-| Management0 | oob_management | oob | default | - | - |
+| Management0 | OOB_MANAGEMENT | oob | default | - | - |
 
 #### Management Interfaces Device Configuration
 
 ```eos
 !
 interface Management0
-   description oob_management
+   description OOB_MANAGEMENT
    no shutdown
    ip address 192.168.0.202/24
 ```
@@ -71,9 +73,9 @@ dns domain atd.lab
 
 #### Management API HTTP Summary
 
-| HTTP | HTTPS | Default Services |
-| ---- | ----- | ---------------- |
-| False | True | - |
+| HTTP | HTTPS | UNIX-Socket | Default Services |
+| ---- | ----- | ----------- | ---------------- |
+| False | True | - | - |
 
 #### Management API VRF Access
 
@@ -92,6 +94,12 @@ management api http-commands
    vrf default
       no shutdown
 ```
+
+## Authentication
+
+### Enable Password
+
+Enable password has been disabled
 
 ## Spanning Tree
 
@@ -136,17 +144,17 @@ vlan internal order ascending range 1006 1199
 
 ##### IPv4
 
-| Interface | Description | Type | Channel Group | IP Address | VRF |  MTU | Shutdown | ACL In | ACL Out |
-| --------- | ----------- | -----| ------------- | ---------- | ----| ---- | -------- | ------ | ------- |
-| Ethernet2 | P2P_LINK_TO_s2-brdr1_Ethernet4 | routed | - | 172.16.30.5/31 | default | 9214 | False | - | - |
-| Ethernet4 | TO DC1 s1-core1 eth4 | routed | - | 30.1.1.2/24 | default | - | False | - | - |
+| Interface | Description | Channel Group | IP Address | VRF |  MTU | Shutdown | ACL In | ACL Out |
+| --------- | ----------- | ------------- | ---------- | ----| ---- | -------- | ------ | ------- |
+| Ethernet2 | P2P_s2-brdr1_Ethernet4 | - | 172.16.30.5/31 | default | 9214 | False | - | - |
+| Ethernet4 | TO DC1 s1-core1 eth4 | - | 30.1.1.2/24 | default | - | False | - | - |
 
 #### Ethernet Interfaces Device Configuration
 
 ```eos
 !
 interface Ethernet2
-   description P2P_LINK_TO_s2-brdr1_Ethernet4
+   description P2P_s2-brdr1_Ethernet4
    no shutdown
    mtu 9214
    no switchport
@@ -167,20 +175,20 @@ interface Ethernet4
 
 | Interface | Description | VRF | IP Address |
 | --------- | ----------- | --- | ---------- |
-| Loopback0 | EVPN_Overlay_Peering | default | 192.168.250.3/32 |
+| Loopback0 | ROUTER_ID | default | 192.168.250.3/32 |
 
 ##### IPv6
 
 | Interface | Description | VRF | IPv6 Address |
 | --------- | ----------- | --- | ------------ |
-| Loopback0 | EVPN_Overlay_Peering | default | - |
+| Loopback0 | ROUTER_ID | default | - |
 
 #### Loopback Interfaces Device Configuration
 
 ```eos
 !
 interface Loopback0
-   description EVPN_Overlay_Peering
+   description ROUTER_ID
    no shutdown
    ip address 192.168.250.3/32
 ```
@@ -274,9 +282,9 @@ ASN Notation: asplain
 !
 router bgp 65301
    router-id 192.168.250.3
+   no bgp default ipv4-unicast
    distance bgp 20 200 200
    maximum-paths 4 ecmp 4
-   no bgp default ipv4-unicast
    neighbor IPv4-UNDERLAY-PEERS peer group
    neighbor IPv4-UNDERLAY-PEERS send-community
    neighbor IPv4-UNDERLAY-PEERS maximum-routes 12000

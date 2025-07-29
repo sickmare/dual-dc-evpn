@@ -1,0 +1,21 @@
+
+####### pre-commit feature installed is mandatory when git commit and push to github ##########
+pip3 config set global.break-system-packages true
+pip3 install pre-commit
+pre-commit install
+pre-commit run -a
+
+####### pre-commit feature installed is mandatory when git commit and push to github ##########
+
+####### ANTA ##########
+pip3 config set global.break-system-packages true
+pip3 config set global.disable-pip-version-check true
+pip3 install -r requirements.txt
+ansible-galaxy collection install -r requirements.yml
+
+####### ANTA ##########
+
+####### install ping ##########
+sudo apt update
+sudo apt install iputils-ping
+####### install ping ##########

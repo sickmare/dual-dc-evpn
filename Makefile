@@ -1,4 +1,3 @@
-### Generic Variables
 SHELL := /bin/zsh
 
 .PHONY: help
@@ -15,7 +14,7 @@ provision-cvp: ## Push configurations to CVP and create tasks (user must execute
 	ansible-playbook playbooks/atd-fabric-provision.yml
 
 
-########## maintenance command ############
+########## capture / validate command ############
 .PHONY: validate-api
 validate-api: ## Validate the fabric from the EOS nodes using eAPI
 	ansible-playbook playbooks/atd-validate-states.yml
@@ -27,7 +26,9 @@ config-backup-ssh: ## config-backup from the EOS nodes using ssh
 .PHONY: snapshot-ssh
 snapshot-ssh: ## snapshot from the EOS nodes using ssh
 	ansible-playbook playbooks/atd-snapshot.yml
+########## capture / validate command ############
 
+########## ping check command ############
 .PHONY: ping-dc1
 ping-dc1: ## Ping Nodes
 	ansible-playbook playbooks/atd-ping.yml -i atd-inventory/inventory.yml -e "target_hosts=ATD_DC1_FABRIC"
@@ -44,10 +45,27 @@ ping-core: ## Ping Nodes
 .PHONY: ping-all
 ping-all: ## Ping Nodes
 	ansible-playbook playbooks/atd-ping.yml -i atd-inventory/inventory.yml -e "target_hosts=ATD_MGMT"
-########## maintenance command ############
+########## ping check command ############
 
+########## API check command ############
+.PHONY: apicheck-all
+apicheck-all: ## api check all switches
+	anta get inventory -u arista -p psrqfvnuiwwvn10y -i /home/coder/project/labfiles/dual-dc-evpn/anta_inventory.yml --connected
 
-########## copy / remove yml files ############
+.PHONY: apicheck-dc1
+apicheck-dc1: ## api check dc1 switches
+	anta get inventory -u arista -p psrqfvnuiwwvn10y -i /home/coder/project/labfiles/dual-dc-evpn/anta_inventory.yml --connected --tags DC1
+
+.PHONY: apicheck-dc2
+apicheck-dc2: ## api check dc2 switches
+	anta get inventory -u arista -p psrqfvnuiwwvn10y -i /home/coder/project/labfiles/dual-dc-evpn/anta_inventory.yml --connected --tags DC2
+
+.PHONY: apicheck-core
+apicheck-core: ## api check dci/core switches
+	anta get inventory -u arista -p psrqfvnuiwwvn10y -i /home/coder/project/labfiles/dual-dc-evpn/anta_inventory.yml --connected --tags CORE
+########## API check command ############
+
+######### copy / remove yml files ############
 .PHONY: rm-hg
 rm-hg:
 	rm /home/coder/project/labfiles/dual-dc-evpn/atd-inventory/host_vars/* && \
@@ -67,4 +85,3 @@ cp-hg:
 rm-yaml-transformer:
 	rm -r /home/coder/project/labfiles/arista-yaml-transformer
 ########## copy / remove yml files ############
-

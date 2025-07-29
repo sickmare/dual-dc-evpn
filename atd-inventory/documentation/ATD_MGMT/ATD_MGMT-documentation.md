@@ -166,7 +166,7 @@
 ### VTEP Loopback VXLAN Tunnel Source Interfaces (VTEPs Only)
 
 | VTEP Loopback Pool | Available Addresses | Assigned addresses | Assigned Address % |
-| --------------------- | ------------------- | ------------------ | ------------------ |
+| ------------------ | ------------------- | ------------------ | ------------------ |
 | 192.0.254.0/24 | 256 | 6 | 2.35 % |
 | 192.2.254.0/24 | 256 | 6 | 2.35 % |
 
@@ -193,33 +193,22 @@
 
 | Key | Type | Description |
 | --- | ---- | ----------- |
-| access_points | access_point | Access Point |
-| cameras | camera | Camera |
-| cpes | cpe | CPE |
-| firewalls | firewall | Firewall |
-| generic_devices | generic_device | Generic Device |
-| load_balancers | load_balancer | Load Balancer |
-| phones | phone | Phone |
-| printers | printer | Printer |
-| routers | router | Router |
 | servers | server | Server |
-| storage_arrays | storage_array | Storage Array |
-| workstations | workstation | Workstation |
 
 ### Servers
 
-| Name | Port | Fabric Device | Fabric Port | Description | Shutdown | Type | Mode | VLANs | Profile |
-| ---- | ---- | ------------- | ------------| ----------- | -------- | ---- | ---- | ----- | ------- |
-| s1-leaf3_s1-leaf4-L2_VPC1 | NIC1 | s1-leaf3 | Ethernet4 | s1-leaf3_s1-leaf4-L2_VPC1_NIC1 | False | switched | trunk | 20 | int_vpc_trunk_host |
-| s1-leaf3_s1-leaf4-L2_VPC1 | NIC2 | s1-leaf4 | Ethernet4 | s1-leaf3_s1-leaf4-L2_VPC1_NIC2 | False | switched | trunk | 20 | int_vpc_trunk_host |
-| s2-leaf3_s2-leaf4-L2_VPC1 | NIC1 | s2-leaf3 | Ethernet4 | s2-leaf3_s2-leaf4-L2_VPC1_NIC1 | False | switched | trunk | 20 | int_vpc_trunk_host |
-| s2-leaf3_s2-leaf4-L2_VPC1 | NIC2 | s2-leaf4 | Ethernet4 | s2-leaf3_s2-leaf4-L2_VPC1_NIC2 | False | switched | trunk | 20 | int_vpc_trunk_host |
+| Name | Port | Fabric Device | Fabric Port | Description | Shutdown | Mode | Access VLAN | Trunk Allowed VLANs | Profile |
+| ---- | ---- | ------------- | ------------| ----------- | -------- | ---- | ----------- | ------------------- | ------- |
+| s1-leaf3_s1-leaf4-L2_VPC1 | NIC1 | s1-leaf3 | Ethernet4 | SERVER_s1-leaf3_s1-leaf4-L2_VPC1_NIC1 | False | trunk | - | 20 | int_vpc_trunk_host |
+| s1-leaf3_s1-leaf4-L2_VPC1 | NIC2 | s1-leaf4 | Ethernet4 | SERVER_s1-leaf3_s1-leaf4-L2_VPC1_NIC2 | False | trunk | - | 20 | int_vpc_trunk_host |
+| s2-leaf3_s2-leaf4-L2_VPC1 | NIC1 | s2-leaf3 | Ethernet4 | SERVER_s2-leaf3_s2-leaf4-L2_VPC1_NIC1 | False | trunk | - | 20 | int_vpc_trunk_host |
+| s2-leaf3_s2-leaf4-L2_VPC1 | NIC2 | s2-leaf4 | Ethernet4 | SERVER_s2-leaf3_s2-leaf4-L2_VPC1_NIC2 | False | trunk | - | 20 | int_vpc_trunk_host |
 
 ### Port Profiles
 
 | Profile Name | Parent Profile |
 | ------------ | -------------- |
-| int_vpc_trunk_host | - |
-| int_trunk_host | - |
 | int_access_host | - |
 | int_routed_host | - |
+| int_trunk_host | - |
+| int_vpc_trunk_host | - |
