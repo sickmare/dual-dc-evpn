@@ -13,6 +13,9 @@ build: ## Build fabric artifacts
 provision-cvp: ## Push configurations to CVP and create tasks (user must execute)
 	ansible-playbook playbooks/atd-fabric-provision.yml
 
+.PHONY: provision-cvpstudio
+provision-cvpstudio: ## Push configurations to CVP static studio
+	ansible-playbook playbooks/atd-fabric-provision-cvpstudio.yml
 
 ########## capture / validate command ############
 .PHONY: validate-api
