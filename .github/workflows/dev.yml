@@ -32,4 +32,4 @@ jobs:
 
       - name: Test configuration for DC1 and DC2
         run: make build
-        working-directory: /
+        working-directory: dual-dc-evpn/
