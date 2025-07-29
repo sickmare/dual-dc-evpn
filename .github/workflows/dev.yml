@@ -8,8 +8,7 @@ on:
 jobs:
   dev:
     env:
-      LABPASSPHRASE: psrqfvnuiwwvn10y
-    #  LABPASSPHRASE: ${{ secrets.LABPASSPHRASE }}
+      LABPASSPHRASE: ${{ secrets.LABPASSPHRASE }}
     timeout-minutes: 15
     runs-on: ubuntu-latest
     steps:
