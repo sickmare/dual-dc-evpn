@@ -1,0 +1,19 @@
+Interface                      Status         Protocol           Description
+Et1                            up             up                 MLAG_PEER_s2-brdr2_Ethernet1
+Et2                            up             up                 P2P_LINK_TO_S2-SPINE1_Ethernet7
+Et3                            up             up                 P2P_LINK_TO_S2-SPINE2_Ethernet7
+Et4                            up             up                 P2P_LINK_TO_s2-core1_Ethernet2
+Et5                            down           down               
+Et6                            up             up                 
+Lo0                            up             up                 EVPN_Overlay_Peering
+Lo1                            up             up                 VTEP_VXLAN_Tunnel_Source
+Lo100                          up             up                 bluevrf_VTEP_DIAGNOSTICS
+Ma0                            up             up                 
+Po1                            up             up                 MLAG_PEER_s2-brdr2_Po1
+Vl1199                         up             up                 
+Vl2300                         up             up                 bluenet1
+Vl2301                         up             up                 bluenet2
+Vl3009                         up             up                 MLAG_PEER_L3_iBGP: vrf bluevrf
+Vl4093                         up             up                 MLAG_PEER_L3_PEERING
+Vl4094                         up             up                 MLAG_PEER
+Vx1                            up             up                 s2-brdr1_VTEP
