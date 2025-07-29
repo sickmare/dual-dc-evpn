@@ -14,16 +14,18 @@ build: ## Build fabric artifacts
 provision-cvp: ## Push configurations to CVP and create tasks (user must execute)
 	ansible-playbook playbooks/atd-fabric-provision.yml
 
-.PHONY: validate
-validate: ## Validate the fabric from the EOS nodes using eAPI
+
+########## maintenance command ############
+.PHONY: validate-api
+validate-api: ## Validate the fabric from the EOS nodes using eAPI
 	ansible-playbook playbooks/atd-validate-states.yml
 
-.PHONY: config-backup
-config-backup: ## Validate the fabric from the EOS nodes using eAPI
+.PHONY: config-backup-ssh
+config-backup-ssh: ## config-backup from the EOS nodes using ssh
 	ansible-playbook playbooks/atd-fabric-config-backup.yml
 
-.PHONY: snapshot
-snapshot: ## Validate the fabric from the EOS nodes using eAPI
+.PHONY: snapshot-ssh
+snapshot-ssh: ## snapshot from the EOS nodes using ssh
 	ansible-playbook playbooks/atd-snapshot.yml
 
 .PHONY: ping-dc1
@@ -39,8 +41,13 @@ ping-core: ## Ping Nodes
 	ansible-playbook playbooks/atd-ping.yml -i atd-inventory/inventory.yml -e "target_hosts=ISN_WAN_ROUTER"
 
 
+.PHONY: ping-all
+ping-all: ## Ping Nodes
+	ansible-playbook playbooks/atd-ping.yml -i atd-inventory/inventory.yml -e "target_hosts=ATD_MGMT"
+########## maintenance command ############
 
 
+########## copy / remove yml files ############
 .PHONY: rm-hg
 rm-hg:
 	rm /home/coder/project/labfiles/dual-dc-evpn/atd-inventory/host_vars/* && \
@@ -56,9 +63,8 @@ cp-hg:
 	cp /home/coder/project/labfiles/arista-yaml-transformer/s2-* /home/coder/project/labfiles/dual-dc-evpn/atd-inventory/host_vars/ && \
 	cp /home/coder/project/labfiles/arista-yaml-transformer/ATD_* /home/coder/project/labfiles/dual-dc-evpn/atd-inventory/group_vars/
 
-
 .PHONY: rm-yaml-transformer
 rm-yaml-transformer:
 	rm -r /home/coder/project/labfiles/arista-yaml-transformer
-
+########## copy / remove yml files ############
 

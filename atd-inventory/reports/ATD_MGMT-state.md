@@ -13,32 +13,32 @@
 
 | Total Tests | Total Tests Passed | Total Tests Failed | Total Tests Skipped |
 | ----------- | ------------------ | ------------------ | ------------------- |
-| 1156 | 1068 | 8 | 80 |
+| 1156 | 1051 | 25 | 80 |
 
 ### Summary Totals Device Under Test
 
 | Device Under Test | Total Tests | Tests Passed | Tests Failed | Tests Skipped | Categories Failed | Categories Skipped |
 | ------------------| ----------- | ------------ | ------------ | ------------- | ----------------- | ------------------ |
-| s1-brdr1 | 82 | 78 | 0 | 4 | - | Hardware |
-| s1-brdr2 | 82 | 78 | 0 | 4 | - | Hardware |
-| s1-core1 | 13 | 9 | 0 | 4 | - | Hardware |
-| s1-core2 | 13 | 9 | 0 | 4 | - | Hardware |
-| s1-leaf1 | 78 | 73 | 1 | 4 | Interfaces | Hardware |
-| s1-leaf2 | 78 | 73 | 1 | 4 | Interfaces | Hardware |
-| s1-leaf3 | 79 | 74 | 1 | 4 | Interfaces | Hardware |
+| s1-brdr1 | 82 | 77 | 1 | 4 | System | Hardware |
+| s1-brdr2 | 82 | 77 | 1 | 4 | System | Hardware |
+| s1-core1 | 13 | 8 | 1 | 4 | System | Hardware |
+| s1-core2 | 13 | 8 | 1 | 4 | System | Hardware |
+| s1-leaf1 | 78 | 72 | 2 | 4 | Interfaces, System | Hardware |
+| s1-leaf2 | 78 | 72 | 2 | 4 | Interfaces, System | Hardware |
+| s1-leaf3 | 79 | 73 | 2 | 4 | Interfaces, System | Hardware |
 | s1-leaf4 | 79 | 74 | 1 | 4 | Interfaces | Hardware |
-| s1-spine1 | 37 | 33 | 0 | 4 | - | Hardware |
-| s1-spine2 | 37 | 33 | 0 | 4 | - | Hardware |
-| s2-brdr1 | 82 | 78 | 0 | 4 | - | Hardware |
-| s2-brdr2 | 82 | 78 | 0 | 4 | - | Hardware |
-| s2-core1 | 13 | 9 | 0 | 4 | - | Hardware |
-| s2-core2 | 13 | 9 | 0 | 4 | - | Hardware |
+| s1-spine1 | 37 | 32 | 1 | 4 | System | Hardware |
+| s1-spine2 | 37 | 32 | 1 | 4 | System | Hardware |
+| s2-brdr1 | 82 | 77 | 1 | 4 | System | Hardware |
+| s2-brdr2 | 82 | 77 | 1 | 4 | System | Hardware |
+| s2-core1 | 13 | 8 | 1 | 4 | System | Hardware |
+| s2-core2 | 13 | 8 | 1 | 4 | System | Hardware |
 | s2-leaf1 | 78 | 73 | 1 | 4 | Interfaces | Hardware |
-| s2-leaf2 | 78 | 73 | 1 | 4 | Interfaces | Hardware |
+| s2-leaf2 | 78 | 72 | 2 | 4 | Interfaces, System | Hardware |
 | s2-leaf3 | 79 | 74 | 1 | 4 | Interfaces | Hardware |
-| s2-leaf4 | 79 | 74 | 1 | 4 | Interfaces | Hardware |
-| s2-spine1 | 37 | 33 | 0 | 4 | - | Hardware |
-| s2-spine2 | 37 | 33 | 0 | 4 | - | Hardware |
+| s2-leaf4 | 79 | 73 | 2 | 4 | Interfaces, System | Hardware |
+| s2-spine1 | 37 | 32 | 1 | 4 | System | Hardware |
+| s2-spine2 | 37 | 32 | 1 | 4 | System | Hardware |
 
 ### Summary Totals Per Category
 
@@ -50,20 +50,37 @@
 | Interfaces | 220 | 212 | 8 | 0 |
 | MLAG | 12 | 12 | 0 | 0 |
 | Routing | 332 | 332 | 0 | 0 |
-| System | 20 | 20 | 0 | 0 |
+| System | 20 | 3 | 17 | 0 |
 
 ## Failed Test Results Summary
 
 | ID | Device Under Test | Categories | Test | Description | Inputs | Result | Messages |
 | -- | ----------------- | ---------- | ---- | ----------- | ------ | -------| -------- |
+| 82 | s1-brdr1 | System | VerifyNTP | Verifies if NTP is synchronised. | - | FAIL | The device is not synchronized with the configured NTP server(s): 'NTP starting...' |
+| 164 | s1-brdr2 | System | VerifyNTP | Verifies if NTP is synchronised. | - | FAIL | The device is not synchronized with the configured NTP server(s): 'NTP starting...' |
+| 177 | s1-core1 | System | VerifyNTP | Verifies if NTP is synchronised. | - | FAIL | The device is not synchronized with the configured NTP server(s): 'NTP starting...' |
+| 190 | s1-core2 | System | VerifyNTP | Verifies if NTP is synchronised. | - | FAIL | The device is not synchronized with the configured NTP server(s): 'NTP starting...' |
 | 228 | s1-leaf1 | Interfaces | VerifyInterfacesStatus | Verifies the status of the provided interfaces. | Interface Ethernet4 - test eth4 trunk port = 'up' | FAIL | The following interface(s) are not in the expected state: ['Ethernet4 is down/down'] |
+| 268 | s1-leaf1 | System | VerifyNTP | Verifies if NTP is synchronised. | - | FAIL | The device is not synchronized with the configured NTP server(s): 'NTP starting...' |
 | 306 | s1-leaf2 | Interfaces | VerifyInterfacesStatus | Verifies the status of the provided interfaces. | Interface Ethernet4 - test eth4 trunk port = 'up' | FAIL | The following interface(s) are not in the expected state: ['Ethernet4 is down/down'] |
+| 346 | s1-leaf2 | System | VerifyNTP | Verifies if NTP is synchronised. | - | FAIL | The device is not synchronized with the configured NTP server(s): 'NTP starting...' |
 | 390 | s1-leaf3 | Interfaces | VerifyInterfacesStatus | Verifies the status of the provided interfaces. | Interface Port-Channel4 - s1-leaf3_s1-leaf4-L2_VPC1_PortChannel = 'up' | FAIL | The following interface(s) are not in the expected state: ['Port-Channel4 is down/lowerLayerDown'] |
+| 425 | s1-leaf3 | System | VerifyNTP | Verifies if NTP is synchronised. | - | FAIL | The device is not synchronized with the configured NTP server(s): 'unsynchronised' |
 | 469 | s1-leaf4 | Interfaces | VerifyInterfacesStatus | Verifies the status of the provided interfaces. | Interface Port-Channel4 - s1-leaf3_s1-leaf4-L2_VPC1_PortChannel = 'up' | FAIL | The following interface(s) are not in the expected state: ['Port-Channel4 is down/lowerLayerDown'] |
+| 541 | s1-spine1 | System | VerifyNTP | Verifies if NTP is synchronised. | - | FAIL | The device is not synchronized with the configured NTP server(s): 'NTP starting...' |
+| 578 | s1-spine2 | System | VerifyNTP | Verifies if NTP is synchronised. | - | FAIL | The device is not synchronized with the configured NTP server(s): 'unsynchronised' |
+| 660 | s2-brdr1 | System | VerifyNTP | Verifies if NTP is synchronised. | - | FAIL | The device is not synchronized with the configured NTP server(s): 'NTP starting...' |
+| 742 | s2-brdr2 | System | VerifyNTP | Verifies if NTP is synchronised. | - | FAIL | The device is not synchronized with the configured NTP server(s): 'NTP starting...' |
+| 755 | s2-core1 | System | VerifyNTP | Verifies if NTP is synchronised. | - | FAIL | The device is not synchronized with the configured NTP server(s): 'NTP starting...' |
+| 768 | s2-core2 | System | VerifyNTP | Verifies if NTP is synchronised. | - | FAIL | The device is not synchronized with the configured NTP server(s): 'NTP starting...' |
 | 806 | s2-leaf1 | Interfaces | VerifyInterfacesStatus | Verifies the status of the provided interfaces. | Interface Ethernet4 - test eth4 access port = 'up' | FAIL | The following interface(s) are not in the expected state: ['Ethernet4 is down/down'] |
 | 884 | s2-leaf2 | Interfaces | VerifyInterfacesStatus | Verifies the status of the provided interfaces. | Interface Ethernet4 - test eth4 access port = 'up' | FAIL | The following interface(s) are not in the expected state: ['Ethernet4 is down/down'] |
+| 924 | s2-leaf2 | System | VerifyNTP | Verifies if NTP is synchronised. | - | FAIL | The device is not synchronized with the configured NTP server(s): 'NTP starting...' |
 | 968 | s2-leaf3 | Interfaces | VerifyInterfacesStatus | Verifies the status of the provided interfaces. | Interface Port-Channel4 - s2-leaf3_s2-leaf4-L2_VPC1_PortChannel = 'up' | FAIL | The following interface(s) are not in the expected state: ['Port-Channel4 is down/lowerLayerDown'] |
 | 1047 | s2-leaf4 | Interfaces | VerifyInterfacesStatus | Verifies the status of the provided interfaces. | Interface Port-Channel4 - s2-leaf3_s2-leaf4-L2_VPC1_PortChannel = 'up' | FAIL | The following interface(s) are not in the expected state: ['Port-Channel4 is down/lowerLayerDown'] |
+| 1082 | s2-leaf4 | System | VerifyNTP | Verifies if NTP is synchronised. | - | FAIL | The device is not synchronized with the configured NTP server(s): 'unsynchronised' |
+| 1119 | s2-spine1 | System | VerifyNTP | Verifies if NTP is synchronised. | - | FAIL | The device is not synchronized with the configured NTP server(s): 'NTP starting...' |
+| 1156 | s2-spine2 | System | VerifyNTP | Verifies if NTP is synchronised. | - | FAIL | The device is not synchronized with the configured NTP server(s): 'NTP starting...' |
 
 ## All Test Results
 
@@ -150,7 +167,7 @@
 | 79 | s1-brdr1 | Routing | VerifyRoutingTableEntry | Verifies that the provided routes are present in the routing table of a specified VRF. | Route: 192.2.255.26 - Peer: s2-leaf4 | PASS | - |
 | 80 | s1-brdr1 | Routing | VerifyRoutingTableEntry | Verifies that the provided routes are present in the routing table of a specified VRF. | Route: 192.2.255.57 - Peer: s2-brdr1 | PASS | - |
 | 81 | s1-brdr1 | Routing | VerifyRoutingTableEntry | Verifies that the provided routes are present in the routing table of a specified VRF. | Route: 192.2.255.58 - Peer: s2-brdr2 | PASS | - |
-| 82 | s1-brdr1 | System | VerifyNTP | Verifies if NTP is synchronised. | - | PASS | - |
+| 82 | s1-brdr1 | System | VerifyNTP | Verifies if NTP is synchronised. | - | FAIL | The device is not synchronized with the configured NTP server(s): 'NTP starting...' |
 | 83 | s1-brdr2 | BGP | VerifyBGPSpecificPeers | Verifies the health of specific BGP peer(s). | BGP EVPN Peer: s1-spine1 (IP: 192.0.255.1) | PASS | - |
 | 84 | s1-brdr2 | BGP | VerifyBGPSpecificPeers | Verifies the health of specific BGP peer(s). | BGP EVPN Peer: s1-spine2 (IP: 192.0.255.2) | PASS | - |
 | 85 | s1-brdr2 | BGP | VerifyBGPSpecificPeers | Verifies the health of specific BGP peer(s). | BGP EVPN Peer: s2-brdr1 (IP: 192.2.255.57) | PASS | - |
@@ -232,7 +249,7 @@
 | 161 | s1-brdr2 | Routing | VerifyRoutingTableEntry | Verifies that the provided routes are present in the routing table of a specified VRF. | Route: 192.2.255.26 - Peer: s2-leaf4 | PASS | - |
 | 162 | s1-brdr2 | Routing | VerifyRoutingTableEntry | Verifies that the provided routes are present in the routing table of a specified VRF. | Route: 192.2.255.57 - Peer: s2-brdr1 | PASS | - |
 | 163 | s1-brdr2 | Routing | VerifyRoutingTableEntry | Verifies that the provided routes are present in the routing table of a specified VRF. | Route: 192.2.255.58 - Peer: s2-brdr2 | PASS | - |
-| 164 | s1-brdr2 | System | VerifyNTP | Verifies if NTP is synchronised. | - | PASS | - |
+| 164 | s1-brdr2 | System | VerifyNTP | Verifies if NTP is synchronised. | - | FAIL | The device is not synchronized with the configured NTP server(s): 'NTP starting...' |
 | 165 | s1-core1 | BGP | VerifyBGPSpecificPeers | Verifies the health of specific BGP peer(s). | BGP IPv4 Unicast Peer: 30.1.1.2 | PASS | - |
 | 166 | s1-core1 | BGP | VerifyBGPSpecificPeers | Verifies the health of specific BGP peer(s). | BGP IPv4 Unicast Peer: s1-brdr1 (IP: 172.16.30.0) | PASS | - |
 | 167 | s1-core1 | Connectivity | VerifyLLDPNeighbors | Verifies that the provided LLDP neighbors are connected properly. | Local: Ethernet2 - Remote: s1-brdr1 Ethernet4 | PASS | - |
@@ -245,7 +262,7 @@
 | 174 | s1-core1 | Interfaces | VerifyInterfacesStatus | Verifies the status of the provided interfaces. | Interface Ethernet4 - TO DC2 s2-core1 eth4 = 'up' | PASS | - |
 | 175 | s1-core1 | Interfaces | VerifyInterfacesStatus | Verifies the status of the provided interfaces. | Interface Loopback0 - EVPN_Overlay_Peering = 'up' | PASS | - |
 | 176 | s1-core1 | Routing | VerifyRoutingProtocolModel | Verifies the configured routing protocol model. | Routing protocol model: multi-agent | PASS | - |
-| 177 | s1-core1 | System | VerifyNTP | Verifies if NTP is synchronised. | - | PASS | - |
+| 177 | s1-core1 | System | VerifyNTP | Verifies if NTP is synchronised. | - | FAIL | The device is not synchronized with the configured NTP server(s): 'NTP starting...' |
 | 178 | s1-core2 | BGP | VerifyBGPSpecificPeers | Verifies the health of specific BGP peer(s). | BGP IPv4 Unicast Peer: 30.2.2.2 | PASS | - |
 | 179 | s1-core2 | BGP | VerifyBGPSpecificPeers | Verifies the health of specific BGP peer(s). | BGP IPv4 Unicast Peer: s1-brdr2 (IP: 172.16.30.2) | PASS | - |
 | 180 | s1-core2 | Connectivity | VerifyLLDPNeighbors | Verifies that the provided LLDP neighbors are connected properly. | Local: Ethernet3 - Remote: s1-brdr2 Ethernet5 | PASS | - |
@@ -258,7 +275,7 @@
 | 187 | s1-core2 | Interfaces | VerifyInterfacesStatus | Verifies the status of the provided interfaces. | Interface Ethernet4 - TO DC2 s2-core2 eth4 = 'up' | PASS | - |
 | 188 | s1-core2 | Interfaces | VerifyInterfacesStatus | Verifies the status of the provided interfaces. | Interface Loopback0 - EVPN_Overlay_Peering = 'up' | PASS | - |
 | 189 | s1-core2 | Routing | VerifyRoutingProtocolModel | Verifies the configured routing protocol model. | Routing protocol model: multi-agent | PASS | - |
-| 190 | s1-core2 | System | VerifyNTP | Verifies if NTP is synchronised. | - | PASS | - |
+| 190 | s1-core2 | System | VerifyNTP | Verifies if NTP is synchronised. | - | FAIL | The device is not synchronized with the configured NTP server(s): 'NTP starting...' |
 | 191 | s1-leaf1 | BGP | VerifyBGPSpecificPeers | Verifies the health of specific BGP peer(s). | BGP EVPN Peer: s1-spine1 (IP: 192.0.255.1) | PASS | - |
 | 192 | s1-leaf1 | BGP | VerifyBGPSpecificPeers | Verifies the health of specific BGP peer(s). | BGP EVPN Peer: s1-spine2 (IP: 192.0.255.2) | PASS | - |
 | 193 | s1-leaf1 | BGP | VerifyBGPSpecificPeers | Verifies the health of specific BGP peer(s). | BGP IPv4 Unicast Peer: s1-leaf2 (IP: 10.255.251.21) | PASS | - |
@@ -336,7 +353,7 @@
 | 265 | s1-leaf1 | Routing | VerifyRoutingTableEntry | Verifies that the provided routes are present in the routing table of a specified VRF. | Route: 192.2.255.26 - Peer: s2-leaf4 | PASS | - |
 | 266 | s1-leaf1 | Routing | VerifyRoutingTableEntry | Verifies that the provided routes are present in the routing table of a specified VRF. | Route: 192.2.255.57 - Peer: s2-brdr1 | PASS | - |
 | 267 | s1-leaf1 | Routing | VerifyRoutingTableEntry | Verifies that the provided routes are present in the routing table of a specified VRF. | Route: 192.2.255.58 - Peer: s2-brdr2 | PASS | - |
-| 268 | s1-leaf1 | System | VerifyNTP | Verifies if NTP is synchronised. | - | PASS | - |
+| 268 | s1-leaf1 | System | VerifyNTP | Verifies if NTP is synchronised. | - | FAIL | The device is not synchronized with the configured NTP server(s): 'NTP starting...' |
 | 269 | s1-leaf2 | BGP | VerifyBGPSpecificPeers | Verifies the health of specific BGP peer(s). | BGP EVPN Peer: s1-spine1 (IP: 192.0.255.1) | PASS | - |
 | 270 | s1-leaf2 | BGP | VerifyBGPSpecificPeers | Verifies the health of specific BGP peer(s). | BGP EVPN Peer: s1-spine2 (IP: 192.0.255.2) | PASS | - |
 | 271 | s1-leaf2 | BGP | VerifyBGPSpecificPeers | Verifies the health of specific BGP peer(s). | BGP IPv4 Unicast Peer: s1-leaf1 (IP: 10.255.251.20) | PASS | - |
@@ -414,7 +431,7 @@
 | 343 | s1-leaf2 | Routing | VerifyRoutingTableEntry | Verifies that the provided routes are present in the routing table of a specified VRF. | Route: 192.2.255.26 - Peer: s2-leaf4 | PASS | - |
 | 344 | s1-leaf2 | Routing | VerifyRoutingTableEntry | Verifies that the provided routes are present in the routing table of a specified VRF. | Route: 192.2.255.57 - Peer: s2-brdr1 | PASS | - |
 | 345 | s1-leaf2 | Routing | VerifyRoutingTableEntry | Verifies that the provided routes are present in the routing table of a specified VRF. | Route: 192.2.255.58 - Peer: s2-brdr2 | PASS | - |
-| 346 | s1-leaf2 | System | VerifyNTP | Verifies if NTP is synchronised. | - | PASS | - |
+| 346 | s1-leaf2 | System | VerifyNTP | Verifies if NTP is synchronised. | - | FAIL | The device is not synchronized with the configured NTP server(s): 'NTP starting...' |
 | 347 | s1-leaf3 | BGP | VerifyBGPSpecificPeers | Verifies the health of specific BGP peer(s). | BGP EVPN Peer: s1-spine1 (IP: 192.0.255.1) | PASS | - |
 | 348 | s1-leaf3 | BGP | VerifyBGPSpecificPeers | Verifies the health of specific BGP peer(s). | BGP EVPN Peer: s1-spine2 (IP: 192.0.255.2) | PASS | - |
 | 349 | s1-leaf3 | BGP | VerifyBGPSpecificPeers | Verifies the health of specific BGP peer(s). | BGP IPv4 Unicast Peer: s1-leaf4 (IP: 10.255.251.25) | PASS | - |
@@ -493,7 +510,7 @@
 | 422 | s1-leaf3 | Routing | VerifyRoutingTableEntry | Verifies that the provided routes are present in the routing table of a specified VRF. | Route: 192.2.255.26 - Peer: s2-leaf4 | PASS | - |
 | 423 | s1-leaf3 | Routing | VerifyRoutingTableEntry | Verifies that the provided routes are present in the routing table of a specified VRF. | Route: 192.2.255.57 - Peer: s2-brdr1 | PASS | - |
 | 424 | s1-leaf3 | Routing | VerifyRoutingTableEntry | Verifies that the provided routes are present in the routing table of a specified VRF. | Route: 192.2.255.58 - Peer: s2-brdr2 | PASS | - |
-| 425 | s1-leaf3 | System | VerifyNTP | Verifies if NTP is synchronised. | - | PASS | - |
+| 425 | s1-leaf3 | System | VerifyNTP | Verifies if NTP is synchronised. | - | FAIL | The device is not synchronized with the configured NTP server(s): 'unsynchronised' |
 | 426 | s1-leaf4 | BGP | VerifyBGPSpecificPeers | Verifies the health of specific BGP peer(s). | BGP EVPN Peer: s1-spine1 (IP: 192.0.255.1) | PASS | - |
 | 427 | s1-leaf4 | BGP | VerifyBGPSpecificPeers | Verifies the health of specific BGP peer(s). | BGP EVPN Peer: s1-spine2 (IP: 192.0.255.2) | PASS | - |
 | 428 | s1-leaf4 | BGP | VerifyBGPSpecificPeers | Verifies the health of specific BGP peer(s). | BGP IPv4 Unicast Peer: s1-leaf3 (IP: 10.255.251.24) | PASS | - |
@@ -609,7 +626,7 @@
 | 538 | s1-spine1 | Interfaces | VerifyInterfacesStatus | Verifies the status of the provided interfaces. | Interface Ethernet8 - P2P_LINK_TO_S1-BRDR2_Ethernet2 = 'up' | PASS | - |
 | 539 | s1-spine1 | Interfaces | VerifyInterfacesStatus | Verifies the status of the provided interfaces. | Interface Loopback0 - EVPN_Overlay_Peering = 'up' | PASS | - |
 | 540 | s1-spine1 | Routing | VerifyRoutingProtocolModel | Verifies the configured routing protocol model. | Routing protocol model: multi-agent | PASS | - |
-| 541 | s1-spine1 | System | VerifyNTP | Verifies if NTP is synchronised. | - | PASS | - |
+| 541 | s1-spine1 | System | VerifyNTP | Verifies if NTP is synchronised. | - | FAIL | The device is not synchronized with the configured NTP server(s): 'NTP starting...' |
 | 542 | s1-spine2 | BGP | VerifyBGPSpecificPeers | Verifies the health of specific BGP peer(s). | BGP EVPN Peer: s1-brdr1 (IP: 192.0.255.17) | PASS | - |
 | 543 | s1-spine2 | BGP | VerifyBGPSpecificPeers | Verifies the health of specific BGP peer(s). | BGP EVPN Peer: s1-brdr2 (IP: 192.0.255.18) | PASS | - |
 | 544 | s1-spine2 | BGP | VerifyBGPSpecificPeers | Verifies the health of specific BGP peer(s). | BGP EVPN Peer: s1-leaf1 (IP: 192.0.255.13) | PASS | - |
@@ -646,7 +663,7 @@
 | 575 | s1-spine2 | Interfaces | VerifyInterfacesStatus | Verifies the status of the provided interfaces. | Interface Ethernet8 - P2P_LINK_TO_S1-BRDR2_Ethernet3 = 'up' | PASS | - |
 | 576 | s1-spine2 | Interfaces | VerifyInterfacesStatus | Verifies the status of the provided interfaces. | Interface Loopback0 - EVPN_Overlay_Peering = 'up' | PASS | - |
 | 577 | s1-spine2 | Routing | VerifyRoutingProtocolModel | Verifies the configured routing protocol model. | Routing protocol model: multi-agent | PASS | - |
-| 578 | s1-spine2 | System | VerifyNTP | Verifies if NTP is synchronised. | - | PASS | - |
+| 578 | s1-spine2 | System | VerifyNTP | Verifies if NTP is synchronised. | - | FAIL | The device is not synchronized with the configured NTP server(s): 'unsynchronised' |
 | 579 | s2-brdr1 | BGP | VerifyBGPSpecificPeers | Verifies the health of specific BGP peer(s). | BGP EVPN Peer: s1-brdr1 (IP: 192.0.255.17) | PASS | - |
 | 580 | s2-brdr1 | BGP | VerifyBGPSpecificPeers | Verifies the health of specific BGP peer(s). | BGP EVPN Peer: s1-brdr2 (IP: 192.0.255.18) | PASS | - |
 | 581 | s2-brdr1 | BGP | VerifyBGPSpecificPeers | Verifies the health of specific BGP peer(s). | BGP EVPN Peer: s2-spine1 (IP: 192.2.255.1) | PASS | - |
@@ -728,7 +745,7 @@
 | 657 | s2-brdr1 | Routing | VerifyRoutingTableEntry | Verifies that the provided routes are present in the routing table of a specified VRF. | Route: 192.2.255.26 - Peer: s2-leaf4 | PASS | - |
 | 658 | s2-brdr1 | Routing | VerifyRoutingTableEntry | Verifies that the provided routes are present in the routing table of a specified VRF. | Route: 192.2.255.57 - Peer: s2-brdr1 | PASS | - |
 | 659 | s2-brdr1 | Routing | VerifyRoutingTableEntry | Verifies that the provided routes are present in the routing table of a specified VRF. | Route: 192.2.255.58 - Peer: s2-brdr2 | PASS | - |
-| 660 | s2-brdr1 | System | VerifyNTP | Verifies if NTP is synchronised. | - | PASS | - |
+| 660 | s2-brdr1 | System | VerifyNTP | Verifies if NTP is synchronised. | - | FAIL | The device is not synchronized with the configured NTP server(s): 'NTP starting...' |
 | 661 | s2-brdr2 | BGP | VerifyBGPSpecificPeers | Verifies the health of specific BGP peer(s). | BGP EVPN Peer: s1-brdr1 (IP: 192.0.255.17) | PASS | - |
 | 662 | s2-brdr2 | BGP | VerifyBGPSpecificPeers | Verifies the health of specific BGP peer(s). | BGP EVPN Peer: s1-brdr2 (IP: 192.0.255.18) | PASS | - |
 | 663 | s2-brdr2 | BGP | VerifyBGPSpecificPeers | Verifies the health of specific BGP peer(s). | BGP EVPN Peer: s2-spine1 (IP: 192.2.255.1) | PASS | - |
@@ -810,7 +827,7 @@
 | 739 | s2-brdr2 | Routing | VerifyRoutingTableEntry | Verifies that the provided routes are present in the routing table of a specified VRF. | Route: 192.2.255.26 - Peer: s2-leaf4 | PASS | - |
 | 740 | s2-brdr2 | Routing | VerifyRoutingTableEntry | Verifies that the provided routes are present in the routing table of a specified VRF. | Route: 192.2.255.57 - Peer: s2-brdr1 | PASS | - |
 | 741 | s2-brdr2 | Routing | VerifyRoutingTableEntry | Verifies that the provided routes are present in the routing table of a specified VRF. | Route: 192.2.255.58 - Peer: s2-brdr2 | PASS | - |
-| 742 | s2-brdr2 | System | VerifyNTP | Verifies if NTP is synchronised. | - | PASS | - |
+| 742 | s2-brdr2 | System | VerifyNTP | Verifies if NTP is synchronised. | - | FAIL | The device is not synchronized with the configured NTP server(s): 'NTP starting...' |
 | 743 | s2-core1 | BGP | VerifyBGPSpecificPeers | Verifies the health of specific BGP peer(s). | BGP IPv4 Unicast Peer: 30.1.1.1 | PASS | - |
 | 744 | s2-core1 | BGP | VerifyBGPSpecificPeers | Verifies the health of specific BGP peer(s). | BGP IPv4 Unicast Peer: s2-brdr1 (IP: 172.16.30.4) | PASS | - |
 | 745 | s2-core1 | Connectivity | VerifyLLDPNeighbors | Verifies that the provided LLDP neighbors are connected properly. | Local: Ethernet2 - Remote: s2-brdr1 Ethernet4 | PASS | - |
@@ -823,7 +840,7 @@
 | 752 | s2-core1 | Interfaces | VerifyInterfacesStatus | Verifies the status of the provided interfaces. | Interface Ethernet4 - TO DC1 s1-core1 eth4 = 'up' | PASS | - |
 | 753 | s2-core1 | Interfaces | VerifyInterfacesStatus | Verifies the status of the provided interfaces. | Interface Loopback0 - EVPN_Overlay_Peering = 'up' | PASS | - |
 | 754 | s2-core1 | Routing | VerifyRoutingProtocolModel | Verifies the configured routing protocol model. | Routing protocol model: multi-agent | PASS | - |
-| 755 | s2-core1 | System | VerifyNTP | Verifies if NTP is synchronised. | - | PASS | - |
+| 755 | s2-core1 | System | VerifyNTP | Verifies if NTP is synchronised. | - | FAIL | The device is not synchronized with the configured NTP server(s): 'NTP starting...' |
 | 756 | s2-core2 | BGP | VerifyBGPSpecificPeers | Verifies the health of specific BGP peer(s). | BGP IPv4 Unicast Peer: 30.2.2.1 | PASS | - |
 | 757 | s2-core2 | BGP | VerifyBGPSpecificPeers | Verifies the health of specific BGP peer(s). | BGP IPv4 Unicast Peer: s2-brdr2 (IP: 172.16.30.6) | PASS | - |
 | 758 | s2-core2 | Connectivity | VerifyLLDPNeighbors | Verifies that the provided LLDP neighbors are connected properly. | Local: Ethernet3 - Remote: s2-brdr2 Ethernet5 | PASS | - |
@@ -836,7 +853,7 @@
 | 765 | s2-core2 | Interfaces | VerifyInterfacesStatus | Verifies the status of the provided interfaces. | Interface Ethernet4 - TO DC1 s1-core2 eth4 = 'up' | PASS | - |
 | 766 | s2-core2 | Interfaces | VerifyInterfacesStatus | Verifies the status of the provided interfaces. | Interface Loopback0 - EVPN_Overlay_Peering = 'up' | PASS | - |
 | 767 | s2-core2 | Routing | VerifyRoutingProtocolModel | Verifies the configured routing protocol model. | Routing protocol model: multi-agent | PASS | - |
-| 768 | s2-core2 | System | VerifyNTP | Verifies if NTP is synchronised. | - | PASS | - |
+| 768 | s2-core2 | System | VerifyNTP | Verifies if NTP is synchronised. | - | FAIL | The device is not synchronized with the configured NTP server(s): 'NTP starting...' |
 | 769 | s2-leaf1 | BGP | VerifyBGPSpecificPeers | Verifies the health of specific BGP peer(s). | BGP EVPN Peer: s2-spine1 (IP: 192.2.255.1) | PASS | - |
 | 770 | s2-leaf1 | BGP | VerifyBGPSpecificPeers | Verifies the health of specific BGP peer(s). | BGP EVPN Peer: s2-spine2 (IP: 192.2.255.2) | PASS | - |
 | 771 | s2-leaf1 | BGP | VerifyBGPSpecificPeers | Verifies the health of specific BGP peer(s). | BGP IPv4 Unicast Peer: s2-leaf2 (IP: 10.222.251.41) | PASS | - |
@@ -992,7 +1009,7 @@
 | 921 | s2-leaf2 | Routing | VerifyRoutingTableEntry | Verifies that the provided routes are present in the routing table of a specified VRF. | Route: 192.2.255.26 - Peer: s2-leaf4 | PASS | - |
 | 922 | s2-leaf2 | Routing | VerifyRoutingTableEntry | Verifies that the provided routes are present in the routing table of a specified VRF. | Route: 192.2.255.57 - Peer: s2-brdr1 | PASS | - |
 | 923 | s2-leaf2 | Routing | VerifyRoutingTableEntry | Verifies that the provided routes are present in the routing table of a specified VRF. | Route: 192.2.255.58 - Peer: s2-brdr2 | PASS | - |
-| 924 | s2-leaf2 | System | VerifyNTP | Verifies if NTP is synchronised. | - | PASS | - |
+| 924 | s2-leaf2 | System | VerifyNTP | Verifies if NTP is synchronised. | - | FAIL | The device is not synchronized with the configured NTP server(s): 'NTP starting...' |
 | 925 | s2-leaf3 | BGP | VerifyBGPSpecificPeers | Verifies the health of specific BGP peer(s). | BGP EVPN Peer: s2-spine1 (IP: 192.2.255.1) | PASS | - |
 | 926 | s2-leaf3 | BGP | VerifyBGPSpecificPeers | Verifies the health of specific BGP peer(s). | BGP EVPN Peer: s2-spine2 (IP: 192.2.255.2) | PASS | - |
 | 927 | s2-leaf3 | BGP | VerifyBGPSpecificPeers | Verifies the health of specific BGP peer(s). | BGP IPv4 Unicast Peer: s2-leaf4 (IP: 10.222.251.45) | PASS | - |
@@ -1150,7 +1167,7 @@
 | 1079 | s2-leaf4 | Routing | VerifyRoutingTableEntry | Verifies that the provided routes are present in the routing table of a specified VRF. | Route: 192.2.255.26 - Peer: s2-leaf4 | PASS | - |
 | 1080 | s2-leaf4 | Routing | VerifyRoutingTableEntry | Verifies that the provided routes are present in the routing table of a specified VRF. | Route: 192.2.255.57 - Peer: s2-brdr1 | PASS | - |
 | 1081 | s2-leaf4 | Routing | VerifyRoutingTableEntry | Verifies that the provided routes are present in the routing table of a specified VRF. | Route: 192.2.255.58 - Peer: s2-brdr2 | PASS | - |
-| 1082 | s2-leaf4 | System | VerifyNTP | Verifies if NTP is synchronised. | - | PASS | - |
+| 1082 | s2-leaf4 | System | VerifyNTP | Verifies if NTP is synchronised. | - | FAIL | The device is not synchronized with the configured NTP server(s): 'unsynchronised' |
 | 1083 | s2-spine1 | BGP | VerifyBGPSpecificPeers | Verifies the health of specific BGP peer(s). | BGP EVPN Peer: s2-brdr1 (IP: 192.2.255.57) | PASS | - |
 | 1084 | s2-spine1 | BGP | VerifyBGPSpecificPeers | Verifies the health of specific BGP peer(s). | BGP EVPN Peer: s2-brdr2 (IP: 192.2.255.58) | PASS | - |
 | 1085 | s2-spine1 | BGP | VerifyBGPSpecificPeers | Verifies the health of specific BGP peer(s). | BGP EVPN Peer: s2-leaf1 (IP: 192.2.255.23) | PASS | - |
@@ -1187,7 +1204,7 @@
 | 1116 | s2-spine1 | Interfaces | VerifyInterfacesStatus | Verifies the status of the provided interfaces. | Interface Ethernet8 - P2P_LINK_TO_S2-BRDR2_Ethernet2 = 'up' | PASS | - |
 | 1117 | s2-spine1 | Interfaces | VerifyInterfacesStatus | Verifies the status of the provided interfaces. | Interface Loopback0 - EVPN_Overlay_Peering = 'up' | PASS | - |
 | 1118 | s2-spine1 | Routing | VerifyRoutingProtocolModel | Verifies the configured routing protocol model. | Routing protocol model: multi-agent | PASS | - |
-| 1119 | s2-spine1 | System | VerifyNTP | Verifies if NTP is synchronised. | - | PASS | - |
+| 1119 | s2-spine1 | System | VerifyNTP | Verifies if NTP is synchronised. | - | FAIL | The device is not synchronized with the configured NTP server(s): 'NTP starting...' |
 | 1120 | s2-spine2 | BGP | VerifyBGPSpecificPeers | Verifies the health of specific BGP peer(s). | BGP EVPN Peer: s2-brdr1 (IP: 192.2.255.57) | PASS | - |
 | 1121 | s2-spine2 | BGP | VerifyBGPSpecificPeers | Verifies the health of specific BGP peer(s). | BGP EVPN Peer: s2-brdr2 (IP: 192.2.255.58) | PASS | - |
 | 1122 | s2-spine2 | BGP | VerifyBGPSpecificPeers | Verifies the health of specific BGP peer(s). | BGP EVPN Peer: s2-leaf1 (IP: 192.2.255.23) | PASS | - |
@@ -1224,4 +1241,4 @@
 | 1153 | s2-spine2 | Interfaces | VerifyInterfacesStatus | Verifies the status of the provided interfaces. | Interface Ethernet8 - P2P_LINK_TO_S2-BRDR2_Ethernet3 = 'up' | PASS | - |
 | 1154 | s2-spine2 | Interfaces | VerifyInterfacesStatus | Verifies the status of the provided interfaces. | Interface Loopback0 - EVPN_Overlay_Peering = 'up' | PASS | - |
 | 1155 | s2-spine2 | Routing | VerifyRoutingProtocolModel | Verifies the configured routing protocol model. | Routing protocol model: multi-agent | PASS | - |
-| 1156 | s2-spine2 | System | VerifyNTP | Verifies if NTP is synchronised. | - | PASS | - |
+| 1156 | s2-spine2 | System | VerifyNTP | Verifies if NTP is synchronised. | - | FAIL | The device is not synchronized with the configured NTP server(s): 'NTP starting...' |
